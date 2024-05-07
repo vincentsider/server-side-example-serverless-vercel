@@ -28,7 +28,7 @@ To get started with this project:
 4. You can start the project locally using command `pnpm start`
 5. You can deploy the project to vercel using command `pnpm deploy:prod`
 
-#### Configuration
+#### Configuration:
 
 1. create a .env file in your repository using the command `cp example.env .env`
 2. Get ur `OPENAI_API_KEY` from openai and update the `.env` file.
