@@ -22,7 +22,7 @@ export default async (req: VercelRequest, res: VercelResponse) => {
       id: "chatcmpl-8mcLf78g0quztp4BMtwd3hEj58Uof",
       object: "chat.completion",
       created: Math.floor(Date.now() / 1000),
-      model: "gpt-3.5-turbo-0613",
+      model: "gpt-3.5-turbo-0125",
       system_fingerprint: null,
       choices: [
         {

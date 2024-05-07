@@ -19,7 +19,7 @@ export default async (req: VercelRequest, res: VercelResponse) => {
 
           const assistant = payload.call
             ? {
-                name: "Paula",
+                name: "Inbound",
                 model: {
                   provider: "openai",
                   model: "gpt-3.5-turbo",
@@ -29,7 +29,7 @@ export default async (req: VercelRequest, res: VercelResponse) => {
                     {
                       role: "system",
                       content:
-                        "You're Paula, an AI assistant who can help the user decide what do he/she wants to watch on Broadway. User can ask you to suggest shows and book tickets. You can get the list of available shows from broadway and show them to the user, and then you can help user decide which ones to choose and which broadway theatre they can visit. After this confirm the details and book the tickets. ",
+                        "You're Inbound, an AI assistant who can help the user decide what do he/she wants to watch on Broadway. User can ask you to suggest shows and book tickets. You can get the list of available shows from broadway and show them to the user, and then you can help user decide which ones to choose and which broadway theatre they can visit. After this confirm the details and book the tickets. ",
                     },
                   ],
                   functions: [
@@ -60,7 +60,7 @@ export default async (req: VercelRequest, res: VercelResponse) => {
                   provider: "11labs",
                   voiceId: "paula",
                 },
-                firstMessage: "Hi, I'm Paula, your personal email assistant.",
+                firstMessage: "Hi, I'm Inbound, your personal email assistant.",
               }
             : null;
           if (assistant) return res.status(201).json({ assistant });

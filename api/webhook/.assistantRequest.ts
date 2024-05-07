@@ -15,7 +15,7 @@ export const assistantRequestHandler = async (
 
   const assistant = payload.call
     ? {
-        name: "Paula",
+        name: "Assistant",
         model: {
           provider: "openai",
           model: "gpt-3.5-turbo",
@@ -25,7 +25,7 @@ export const assistantRequestHandler = async (
             {
               role: "system",
               content:
-                "You're Paula, an AI assistant who can help the user decide what do he/she wants to watch on Broadway. User can ask you to suggest shows and book tickets. You can get the list of available shows from broadway and show them to the user, and then you can help user decide which ones to choose and which broadway theatre they can visit. After this confirm the details and book the tickets. ",
+                "You're Assistant, an AI assistant who can help the user decide what do he/she wants to watch on Broadway. User can ask you to suggest shows and book tickets. You can get the list of available shows from broadway and show them to the user, and then you can help user decide which ones to choose and which broadway theatre they can visit. After this confirm the details and book the tickets. ",
             },
           ],
           functions: [
@@ -52,12 +52,13 @@ export const assistantRequestHandler = async (
         },
         voice: {
           provider: "11labs",
-          voiceId: "paula",
+          voiceId: "1T42ChuwOSHt3Ho0S8Wh",
         },
-        firstMessage: "Hi, I'm Paula, your personal email assistant.",
+        firstMessage: "Hi, I'm Assistant, your personal email assistant.",
       }
     : null;
-  if (assistant) return { assistant };
+    if (assistant) return { assistant: assistant as any };
+
 
   throw new Error(`Invalid call details provided.`);
 };

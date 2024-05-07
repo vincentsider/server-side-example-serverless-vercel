@@ -7,17 +7,31 @@ import { speechUpdateHandler } from "./.speechUpdateHandler";
 import { statusUpdateHandler } from "./.statusUpdate";
 import { transcriptHandler } from "./.transcript";
 import { HangEventHandler } from "./.hang";
-import { setCors } from "../../utils/cors.utils";
+// import { setCors } from "../../utils/cors.utils";
+
+// A utility function to set CORS headers
+function setCors(res: VercelResponse) {
+  res.setHeader('Access-Control-Allow-Origin', 'https://dashboard.vapi.ai'); // Adjust according to your needs
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
+}
 
 export default async (req: VercelRequest, res: VercelResponse) => {
-  if ((req.method = "POST")) {
-    setCors(res);
+  // Set CORS headers for all incoming requests
+  setCors(res);
+
+  // Immediately respond to OPTIONS method (preflight request) with success
+  if (req.method === "OPTIONS") {
+    return res.status(200).end();
+  }
+
+  // Process POST requests
+  if (req.method === "POST") {
     const conversationUuid = req.query.conversation_uuid as string;
 
     if (conversationUuid) {
-      // This way we can fetch some data from database and use it in the handlers.
-      // Here you can fetch some context which will be shared accorss all the webhook events for this conversation.
-      console.log("conversationUuid", conversationUuid);
+      console.log("Conversation UUID:", conversationUuid);
     }
     try {
       const payload = req.body.message as VapiPayload;
@@ -44,6 +58,8 @@ export default async (req: VercelRequest, res: VercelResponse) => {
       return res.status(500).send(error.message);
     }
   }
-
-  return res.status(404).send("Not found");
+  else {
+    // Respond with 405 Method Not Allowed for methods other than POST or OPTIONS
+    return res.status(405).send("Method Not Allowed");
+  }
 };

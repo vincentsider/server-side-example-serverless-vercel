@@ -28,11 +28,11 @@ export default async (req: VercelRequest, res: VercelResponse) => {
 
     if (stream) {
       const completionStream = await openai.chat.completions.create({
-        model: model || "gpt-3.5-turbo",
+        model: model || "gpt-3.5-turbo-1106",
         ...restParams,
         messages,
-        max_tokens: max_tokens || 150,
-        temperature: temperature || 0.7,
+        max_tokens: max_tokens || 500,
+        temperature: temperature || 0.3,
         stream: true,
       } as OpenAI.Chat.ChatCompletionCreateParamsStreaming);
 
@@ -46,11 +46,11 @@ export default async (req: VercelRequest, res: VercelResponse) => {
       res.end();
     } else {
       const completion = await openai.chat.completions.create({
-        model: model || "gpt-3.5-turbo",
+        model: model || "gpt-3.5-turbo-1106",
         ...restParams,
         messages,
-        max_tokens: max_tokens || 150,
-        temperature: temperature || 0.7,
+        max_tokens: max_tokens || 500,
+        temperature: temperature || 0.3,
         stream: false,
       });
       return res.status(200).json(completion);

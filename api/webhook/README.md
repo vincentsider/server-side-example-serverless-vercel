@@ -53,7 +53,7 @@ Welcome to the guide on handling Server URL events with Vapi. The Server URL is 
 - Use Case: Store transcripts for analysis or real-time processing.
 - Example Implementation: See `.transcript.ts` for handling transcript updates.
 
-## Dynamic Shared context.
+## Dynamic Shared context..
 
 There could be scenarios where you may want to have some shared context across all the interactions b/w the Backend and the Vapi. You can do so by using a serverUrl which has a id which you can use to fetch shared context.
 
